@@ -51,7 +51,7 @@ This project is a full stack tool for sorting, grading, and recommending technol
 - Add authentication and user accounts.
 - Allow admin to add/edit vendors via UI.
 - Add more advanced scoring/AI logic.
-- Add tests and CI/CD.
+- Add automated testing.
 - Improve UI/UX for large datasets.
 
 ---
