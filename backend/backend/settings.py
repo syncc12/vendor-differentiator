@@ -145,6 +145,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# only in production (Django 4/5 style storages)
+if not DEBUG:
+  STORAGES = {
+    "staticfiles": {
+      "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    }
+  }
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
