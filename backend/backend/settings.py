@@ -21,6 +21,8 @@ load_dotenv(os.path.join(os.path.dirname(os.path.dirname(__file__)), '.env'))
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+USE_WHITENOISE = os.getenv("USE_WHITENOISE", "0") == "1"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -48,7 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    ] + (["whitenoise.middleware.WhiteNoiseMiddleware"] if USE_WHITENOISE else []) + [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -147,12 +149,12 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # only in production (Django 4/5 style storages)
-if not DEBUG:
-  STORAGES = {
-    "staticfiles": {
-      "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
-    }
-  }
+# if not DEBUG:
+#   STORAGES = {
+#     "staticfiles": {
+#       "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
+#     }
+#   }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
