@@ -1,5 +1,5 @@
 
-# Finalist Tech Exercise
+# Vendor Differentiator
 
 This project is a full stack tool for sorting, grading, and recommending technology vendors based on customer criteria. It uses a React.js frontend and a Django backend with SQLite.
 
@@ -20,7 +20,7 @@ This project is a full stack tool for sorting, grading, and recommending technol
    python populate_vendors.py  # Populate with sample vendors
    python manage.py runserver
    ```
-2. The backend will be available at `http://localhost:8000/`
+2. The backend will be available at `http://127.0.0.1:8000/`
 
 ### Frontend
 1. Navigate to the frontend directory:

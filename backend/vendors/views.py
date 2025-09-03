@@ -80,10 +80,24 @@ def recommend_vendors(request):
       # Nice integrations
       nice = set(criteria["nice_integrations"])
       score += len(nice & vendor_integrations)
+      # Determine requirements met for sorting
+      meets_all = explanation == [] or explanation == ["Meets all criteria"]
+      num_missing_required = len(missing) if missing else 0
       recommendations.append({
         "vendor": v.name,
         "score": score,
-        "explanation": explanation or ["Meets all criteria"]
+        "explanation": explanation or ["Meets all criteria"],
+        "meets_all": meets_all,
+        "num_missing_required": num_missing_required
       })
-  recommendations.sort(key=lambda x: x["score"], reverse=True)
+  # Sort: meets_all requirements first, then fewest missing required integrations, then by score desc
+  recommendations.sort(key=lambda x: (
+    not x["meets_all"],
+    x["num_missing_required"],
+    -x["score"]
+  ))
+  # Remove helper fields before returning
+  for r in recommendations:
+    r.pop("meets_all", None)
+    r.pop("num_missing_required", None)
   return Response(recommendations)

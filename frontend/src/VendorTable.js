@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
-  Checkbox, TextField, Button, TableSortLabel, Typography, FormControlLabel
+  Checkbox, TextField, Button, TableSortLabel, Typography
 } from '@mui/material';
 
 /**

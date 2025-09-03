@@ -46,7 +46,7 @@ export default function VendorRecommendationForm() {
     setLoading(true);
     try {
     const baseUrl = process.env.REACT_APP_API_BASE_URL;
-    const res = await axios.post(`${baseUrl}/api/recommend`, form);
+    const res = await axios.post(`${baseUrl}/api/recommend/`, form);
       setResult(res.data);
     } catch (err) {
       setResult({ error: 'Error fetching recommendations.' });
